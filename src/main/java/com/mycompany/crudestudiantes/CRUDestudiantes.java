@@ -22,12 +22,17 @@ public class CRUDestudiantes {
             System.out.println("BASE DE DATOS CREADA");
      
             //CREA UNA COLECCION SI NO EXISTE 
+            /*
             insertarEstudiantes(db, "usuarios", "Pedro", "Primero Básico");
             insertarEstudiantes(db, "usuarios", "Jose", "Quinto Básico");
             insertarEstudiantes(db, "usuarios", "Esteban", "Sexto Básico");
             
             
              mostrarColeccion(db, "usuarios");
+            */
+             
+             
+            buscarPorNombre(db, "usuarios", "Pedro");
         }
         
     }
@@ -65,6 +70,25 @@ public class CRUDestudiantes {
         }
         
     }
+    
+        //CONSULTA
+    public static void buscarPorNombre (DB db, String coleccion, String nombre){
+        DBCollection regsitroEstudiantes = db.getCollection(coleccion);
+        
+        //CONSULTA POR NOMBRE
+        BasicDBObject consulta =  new BasicDBObject();
+        consulta.put("nombre", nombre);
+        
+        
+        DBCursor cursor = regsitroEstudiantes.find(consulta);
+        while(cursor.hasNext()){
+           
+            System.out.println("-- " + cursor.next().get("nombre") + " - " + cursor.curr().get("curso"));
+            
+        }
+    }
+    
+    
     
 
      
