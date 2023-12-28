@@ -35,12 +35,22 @@ public class CRUDestudiantes {
             buscarPorNombre(db, "usuarios", "Pedro");
 */
              //UPDATE
-            
+            /*
             System.out.println("ANTES DEL UPDATE");
             mostrarColeccion(db, "usuarios");
             actualizarDocumento(db, "usuarios", "Pedro");
             System.out.println("DESPUES DEL UPDATE");
             mostrarColeccion(db, "usuarios");
+            */
+            
+                        //DELETE
+            
+            System.out.println("ANTES DEL DELETE");
+            mostrarColeccion(db, "usuarios");
+            borrarDocumento(db, "usuarios", "Jose");
+            System.out.println("DESPUES DEL DELETE");
+            mostrarColeccion(db, "usuarios");
+            
  
              
              
@@ -118,6 +128,17 @@ public class CRUDestudiantes {
         //REALIZA EL UPDATE
         regsitroEstudiantes.update(buscarPorNombre, actualizarCurso);
     }   
+    
+        //DELETE 
+    
+    public static void borrarDocumento(DB db, String coleccion, String nombre){
+        
+        DBCollection regsitroEstudiantes = db.getCollection(coleccion);
+        
+        //REEMPLAZAR INFO
+        
+        regsitroEstudiantes.remove(new BasicDBObject().append("nombre", nombre));
+    }
 
      
 }
