@@ -31,8 +31,19 @@ public class CRUDestudiantes {
              mostrarColeccion(db, "usuarios");
             */
              
-             
+             /*
             buscarPorNombre(db, "usuarios", "Pedro");
+*/
+             //UPDATE
+            
+            System.out.println("ANTES DEL UPDATE");
+            mostrarColeccion(db, "usuarios");
+            actualizarDocumento(db, "usuarios", "Pedro");
+            System.out.println("DESPUES DEL UPDATE");
+            mostrarColeccion(db, "usuarios");
+ 
+             
+             
         }
         
     }
@@ -89,7 +100,24 @@ public class CRUDestudiantes {
     }
     
     
+     //UPDATE 
     
+    public static void actualizarDocumento(DB db, String coleccion, String nombre){
+        DBCollection regsitroEstudiantes = db.getCollection(coleccion);
+        
+        //REEMPLAZAR INFO
+        
+        BasicDBObject actualizarCurso =  new BasicDBObject();
+        actualizarCurso.append("$set", new BasicDBObject().append("curso", "Quinto Básico"));
+        
+        //BUSCAR EL DOCUMENTO EN LA COLECCION 
+        
+        BasicDBObject buscarPorNombre =  new BasicDBObject();
+        buscarPorNombre.append("nombre", nombre);
+        
+        //REALIZA EL UPDATE
+        regsitroEstudiantes.update(buscarPorNombre, actualizarCurso);
+    }   
 
      
 }
